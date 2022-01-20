@@ -49,6 +49,15 @@
 extern keymap_config_t keymap_config;
 #endif
 
+#ifdef BLUETOOTH_ENABLE
+#    include "outputselect.h"
+#    ifdef MODULE_ADAFRUIT_BLE
+#        include "adafruit_ble.h"
+#    elif MODULE_RN42
+#        include "rn42.h"
+#    endif
+#endif
+
 #ifdef JOYSTICK_ENABLE
 #    include "joystick.h"
 #endif
@@ -824,6 +833,17 @@ uint8_t keyboard_leds(void) { return keyboard_led_state; }
 /* prepare and start sending a report IN
  * not callable from ISR or locked state */
 void send_keyboard(report_keyboard_t *report) {
+#ifdef BLUETOOTH_ENABLE
+    if (where_to_send() == OUTPUT_BLUETOOTH) {
+#    ifdef MODULE_ADAFRUIT_BLE
+        adafruit_ble_send_keys(report->mods, report->keys, sizeof(report->keys));
+#    elif MODULE_RN42
+        rn42_send_keyboard(report);
+#    endif
+        return;
+    }
+#endif
+
     osalSysLock();
     if (usbGetDriverStateI(&USB_DRIVER) != USB_ACTIVE) {
         goto unlock;
