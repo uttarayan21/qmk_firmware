@@ -24,8 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    include "adafruit_ble.h"
 #endif
 
-#ifdef MODULE_ITON
-#    include "iton.h"
+#ifdef MODULE_ITON_BT
+#    include "iton_bt.h"
 #endif
 
 uint8_t desired_output = OUTPUT_DEFAULT;
@@ -38,11 +38,11 @@ void set_output(uint8_t output) {
     set_output_user(output);
     desired_output = output;
 
-#ifdef MODULE_ITON
+#ifdef MODULE_ITON_BT
     if (output == OUTPUT_BLUETOOTH) {
-        iton_mode_bt();
+        iton_bt_mode_bt();
     } else if (output == OUTPUT_USB) {
-        iton_mode_usb();
+        iton_bt_mode_usb();
     }
 #endif
 }
