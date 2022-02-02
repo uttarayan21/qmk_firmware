@@ -55,6 +55,8 @@ extern keymap_config_t keymap_config;
 #        include "adafruit_ble.h"
 #    elif MODULE_RN42
 #        include "rn42.h"
+#    elif MODULE_ITON
+#        include "iton.h"
 #    endif
 #endif
 
@@ -839,6 +841,8 @@ void send_keyboard(report_keyboard_t *report) {
         adafruit_ble_send_keys(report->mods, report->keys, sizeof(report->keys));
 #    elif MODULE_RN42
         rn42_send_keyboard(report);
+#    elif MODULE_ITON
+        iton_send_keyboard(report);
 #    endif
         return;
     }
@@ -989,12 +993,28 @@ static void send_extra(uint8_t report_id, uint16_t data) {
 
 void send_system(uint16_t data) {
 #ifdef EXTRAKEY_ENABLE
+#    ifdef BLUETOOTH_ENABLE
+    if (where_to_send() == OUTPUT_BLUETOOTH) {
+#        if MODULE_ITON
+        iton_send_system(data);
+#        endif
+        return;
+    }
+#    endif
     send_extra(REPORT_ID_SYSTEM, data);
 #endif
 }
 
 void send_consumer(uint16_t data) {
 #ifdef EXTRAKEY_ENABLE
+#    ifdef BLUETOOTH_ENABLE
+    if (where_to_send() == OUTPUT_BLUETOOTH) {
+#        if MODULE_ITON
+        iton_send_consumer(data);
+#        endif
+        return;
+    }
+#    endif
     send_extra(REPORT_ID_CONSUMER, data);
 #endif
 }
