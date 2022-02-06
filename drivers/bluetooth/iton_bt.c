@@ -35,7 +35,7 @@ enum iton_bt_cmd {
     fn_report       = 0xA5,
     control         = 0xA6,
     set_name        = 0xA7,
-    set_power_conf  = 0xA8,
+    set_alarm_volt  = 0xA8,
 
     // iton to mcu
     led_state       = 0xB1,
