@@ -80,6 +80,10 @@ void iton_bt_init() {
     setPinInput(ITON_BT_INT_PIN);
 
     SPI0_Init();
+
+#ifndef ITON_BT_WAIT_FOR_SWITCH
+    SPI0_Enable();
+#endif
 }
 
 void iton_bt_write(uint8_t cmd, uint8_t *data, uint8_t len) {
