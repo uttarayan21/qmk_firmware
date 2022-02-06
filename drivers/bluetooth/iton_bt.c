@@ -150,7 +150,7 @@ void iton_bt_send_keyboard(report_keyboard_t *report) {
     static uint8_t iton_last_mod_sent = 0;
     if (iton_last_mod_sent != report->nkro.mods) {
         uint8_t iton_mod_report[8] = {report->nkro.mods, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        iton_bt_write(hid_report, &iton_mod_report, 8);
+        iton_bt_write(hid_report, &iton_mod_report[0], 8);
         iton_last_mod_sent = report->nkro.mods;
     }
     iton_bt_write(nkro_report, &report->nkro.bits[0], 16);
