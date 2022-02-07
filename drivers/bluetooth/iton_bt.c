@@ -123,7 +123,7 @@ void iton_bt_enter_pairing() {
 
 // profile - 1 to ITON_BT_MAX_PROFILES
 void iton_bt_switch_profile(uint8_t profile) {
-    if (profile < ITON_BT_MAX_PROFILES) {
+    if (profile >= ITON_BT_MAX_PROFILES) {
         profile = ITON_BT_MAX_PROFILES - 1;
     }
 
