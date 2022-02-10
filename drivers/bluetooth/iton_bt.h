@@ -13,6 +13,7 @@ void iton_bt_enter_pairing(void);
 void iton_bt_switch_profile(uint8_t profile);
 void iton_bt_os_mac(void);
 void iton_bt_os_win(void);
+void iton_bt_set_name(char *name);
 
 void iton_bt_send_keyboard(report_keyboard_t *report);
 void iton_bt_send_consumer(uint16_t data);

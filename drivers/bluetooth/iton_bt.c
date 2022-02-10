@@ -74,6 +74,26 @@ enum iton_bt_control_param {
     os_win         = 0x75,
 };
 
+enum iton_bt_notification_type {
+    battery_notif   = 0x5A,
+    bluetooth_notif = 0x51,
+};
+
+enum iton_bt_notification_param {
+    // battery_notif
+    voltage_low             = 0x06,
+    exit_low_battery_mode   = 0x0A,
+    low_power_shutdown      = 0x07,
+    query_working_mode      = 0xA0,
+    query_bt_name           = 0xA1,
+
+    // bluetooth_notif
+    bt_connection_success   = 0x76,
+    bt_entered_pairing      = 0x77,
+    bt_disconnected         = 0x78,
+    bt_enters_connection    = 0x79,
+};
+
 void iton_bt_init() {
     setPinOutput(ITON_BT_IRQ_PIN);
     writePinLow(ITON_BT_IRQ_PIN);
@@ -136,6 +156,22 @@ void iton_bt_os_mac() {
 
 void iton_bt_os_win() {
     iton_bt_control(control_bt, os_win);
+}
+
+void iton_bt_set_name(char *name) {
+    uint8_t len = sizeof(name);
+    uint16_t checksum = 0;
+
+    for (uint8_t i = 0; i < len; i++) {
+        checksum += (uint16_t)name[i];
+    }
+
+    uint8_t buffer[34]; // 2 + 1 + 31
+    memcpy(&buffer[0], checksum, 2);
+    buffer[2] = len;
+    memcpy(&buffer[3], name, len);
+
+    iton_bt_write(set_name, &buffer[0], len + 3);
 }
 
 void iton_bt_send_keyboard(report_keyboard_t *report) {
