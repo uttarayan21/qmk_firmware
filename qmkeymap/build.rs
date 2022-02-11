@@ -23,7 +23,6 @@ fn main() {
         .clang_arg("-I../quantum/sequencer")
         .clang_arg("-I../quantum/logging")
         .clang_arg("-I../platforms")
-        .clang_arg("-I/usr/lib/gcc/arm-none-eabi/11.2.0/include")
         .clang_arg("-I/usr/include")
         // .rustified_enum("hid_keyboard_keypad_usage")
         // .rustified_enum("internal_special_keycodes")
