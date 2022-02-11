@@ -36,6 +36,7 @@ macro_rules! keycode {
     ('🔉') => { KC_VOLD };
     ('🔇') => { KC_MUTE };
     ([ ]) => { KC__TODO_ };
+    (RESET) => { RESET };
     (xxx) => { kb!(NO) };
     (xxxx) => { kb!(NO) };
     (xxxxx) => { kb!(NO) };
@@ -53,16 +54,16 @@ macro_rules! keycode {
         MO!($layernu)
     };
     ($key:literal) => {
-        paste::expr!{ [<KC_ $key>] }
+        paste!{ [<KC_ $key>] }
     };
     ($key:ident) => {
-        paste::expr!{ [<KC_ $key>] }
+        paste!{ [<KC_ $key>] }
     };
     ($key:expr) => {
         $key
     };
     ($key:ident&LT($layernu:literal)) => {
-        LT!($layernu, paste::expr!{ [<KC_ $key>] })
+        LT!($layernu, paste!{ [<KC_ $key>] })
     };
 }
 
@@ -85,7 +86,7 @@ macro_rules! keymaps {
     (
         rows => $rows: ident,
         cols => $cols: ident,
-        layer_cnt => $layer_cnt: literal,
+        layer_count => $layer_cnt: literal,
         $( $layer:expr ),+ $(,)?
     ) => {
         #[no_mangle]

@@ -1,17 +1,9 @@
-# QMK Keymaps in rust for Keycrhon k6
-This is a fork of https://github.com/houqp/qmk_firmware/tree/massdrop_houqp_rust and https://github.com/SonixQMK/qmk_firmware for [keychron k6](https://www.keychron.com/products/keychron-k6-wireless-mechanical-keyboard?variant=31441092149337)
-where I have written the keymaps in rust.
+use crate::keycodes::*;
+// use crate::macros::keymaps;
 
-To build run
-`make keychron/k6/rgb/via:servius` for via support  
-Or
-`make keychron/k6/rgb:servius` without via support
+const MATRIX_ROWS: usize = 5;
+const MATRIX_COLS: usize = 16;
 
-
-I had to change some stuff around to make it work on current versions of rust.
-
-
-```rust
 keymaps!(
     rows => MATRIX_ROWS,
     cols => MATRIX_COLS,
@@ -45,9 +37,3 @@ keymaps!(
         r!(    [MO{2}]  |LGUI|LALT|xxx|xxx|xxx|RESET|xxx|xxx|xxx|RALT|[MO{1}]|[MO{2}]| '←' | '↓' | '→' ),
     ),
 );
-```
-
-References:
-- https://about.houqp.me/posts/rusty-c/
-- https://github.com/SonixQMK/qmk_firmware
-- https://github.com/houqp/qmk_firmware/tree/massdrop_houqp_rust
