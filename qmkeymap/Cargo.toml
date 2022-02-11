@@ -1,0 +1,19 @@
+[package]
+name = "qmkeymap"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "keymap"
+crate-type = ["staticlib"]
+path = "src/lib.rs"
+
+[dependencies]
+cty = "0.2.2"
+paste = "1.0.6"
+
+
+[build-dependencies]
+bindgen = "0.*"
