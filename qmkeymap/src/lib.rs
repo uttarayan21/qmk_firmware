@@ -2,13 +2,17 @@
 #![no_builtins]
 #![crate_type = "staticlib"]
 
-#[macro_use]
-pub mod keycodes;
-#[macro_use]
-pub mod macros;
-pub mod keymap;
+mod bindings;
+
 #[macro_use]
 extern crate paste;
+#[macro_use]
+pub mod macros;
+
+#[macro_use]
+pub mod keycodes;
+
+pub mod keymap;
 
 #[panic_handler]
 fn qmk_panic(_info: &core::panic::PanicInfo) -> ! {

@@ -1,9 +1,4 @@
-#![allow(non_upper_case_globals)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-// #![rustfmt::skip]
-
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+use crate::bindings::*;
 
 #[macro_export]
 macro_rules! qkc {
@@ -51,63 +46,64 @@ macro_rules! LT {
 }
 
 macro_rules! KC {
-    ( $key:literal ) => {
-        paste! { pub const [<KC_ $key>] : u16 = kb!($key); }
+    (
+        $(
+            $(#[$meta:meta])*
+            $key:ident
+        ),
+        *
+    ) => {
+        $(
+            $(#[$meta])*
+            paste! { pub const [<KC_ $key>] : u16 = kb!($key); }
+        )*
+    };
+    (
+        $(
+            $(#[$meta:meta])*
+            $key:literal
+        ),
+        *
+    ) => {
+        $(
+            $(#[$meta])*
+            paste! { pub const [<KC_ $key>] : u16 = kb!($key); }
+        )*
     };
 }
 
-KC!("A");
-KC!("B");
-KC!("C");
-KC!("D");
-KC!("E");
-KC!("F");
-KC!("G");
-KC!("H");
-KC!("I");
-KC!("J");
-KC!("K");
-KC!("L");
-KC!("M");
-KC!("N");
-KC!("O");
-KC!("P");
-KC!("Q");
-KC!("R");
-KC!("S");
-KC!("T");
-KC!("U");
-KC!("V");
-KC!("W");
-KC!("X");
-KC!("Y");
-KC!("Z");
+macro_rules! RGB {
+    (
+      $(
+          $(#[$meta:meta])*
+          $key:ident $(=> $alias:ident)?
+      )
+      ,
+      * $(,)?
+    ) => {
+        $(
+            paste! {
+                $(#[$meta])*
+                pub const [<RGB_ $key>]: u16 = qkc!([<RGB_ $key>]);
+                $(
+                    #[doc = concat!("Alias to [`", stringify!([<RGB_ $key>]), "`]")]
+                    pub const [<RGB_ $alias>]: u16 =  [<RGB_ $key>] ;
+                )?
+            }
+        )*
+    };
+}
 
-KC!("F1");
-KC!("F2");
-KC!("F3");
-KC!("F4");
-KC!("F5");
-KC!("F6");
-KC!("F7");
-KC!("F8");
-KC!("F9");
-KC!("F10");
-KC!("F11");
-KC!("F12");
+KC!(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z);
 
-KC!("1");
-KC!("2");
-KC!("3");
-KC!("4");
-KC!("5");
-KC!("6");
-KC!("7");
-KC!("8");
-KC!("9");
-KC!("0");
-KC!("MINUS");
-KC!("EQUAL");
+KC!(F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12);
+
+KC!(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+
+KC!(MINUS);
+KC!(EQUAL);
+
+KC!(UP, DOWN, LEFT, RIGHT, SPACE);
 
 pub const KC_EXCLM: u16 = LSFT!(KC_1); // !
 pub const KC_AT: u16 = LSFT!(KC_2); // @
@@ -122,12 +118,6 @@ pub const KC_RPRN: u16 = LSFT!(KC_0); // )
 pub const KC_UNDS: u16 = LSFT!(KC_MINUS); // _
 pub const KC_PLUS: u16 = LSFT!(KC_EQUAL); // +
 pub const KC_QUES: u16 = LSFT!(KC_SLSH);
-
-KC!("UP");
-KC!("DOWN");
-KC!("LEFT");
-KC!("RIGHT");
-KC!("SPACE");
 
 pub const KC_TG_NKRO: u16 = qkc!(MAGIC_TOGGLE_NKRO); //Toggle 6KRO / NKRO mode
 pub const KC__TODO_: u16 = KC_TRNS as u16;
@@ -170,3 +160,44 @@ pub const RESET: u16 = qkc!(RESET);
 pub const DEBUG: u16 = qkc!(DEBUG);
 pub const EEPROM_RESET: u16 = qkc!(EEPROM_RESET);
 pub const EEP_RST: u16 = qkc!(EEPROM_RESET);
+
+// RGB
+
+RGB!(
+    /// Toggle RGB lighting on or off
+    TOG,
+    /// Cycle through modes, reverse direction when Shift is held
+    MODE_FORWARD => MOD,
+    /// Cycle through modes in reverse, forward direction when Shift is held
+    MODE_REVERSE => RMOD,
+    /// Increase hue, decrease hue when Shift is held
+    HUI,
+    /// Decrease hue, increase hue when Shift is held
+    HUD,
+    /// Increase saturation, decrease saturation when Shift is held
+    SAI,
+    /// Decrease saturation, increase saturation when Shift is held
+    SAD,
+    /// Increase value (brightness), decrease value when Shift is held
+    VAI,
+    /// Decrease value (brightness), increase value when Shift is held
+    VAD,
+    /// Static (no animation) mode
+    MODE_PLAIN => M_P,
+    /// Breathing animation mode
+    MODE_BREATHE => M_B,
+    /// Rainbow animation mode
+    MODE_RAINBOW => M_R,
+    /// Swirl animation mode
+    MODE_SWIRL => M_SW,
+    /// Snake animation mode
+    MODE_SNAKE => M_SN,
+    /// "Knight Rider" animation mode
+    MODE_KNIGHT => M_K,
+    /// Christmas animation mode
+    MODE_XMAS => M_X,
+    /// Static gradient animation mode
+    MODE_GRADIENT => M_G,
+    /// Red,Green,Blue test animation mode
+    MODE_RGBTEST => M_T,
+);
