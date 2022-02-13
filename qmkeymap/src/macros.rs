@@ -1,48 +1,133 @@
 extern crate paste;
 
 #[macro_export]
-macro_rules! pad { ( $x:ident ) => { kb!(NO) } }
+macro_rules! pad {
+    ( $x:ident ) => {
+        kb!(NO)
+    };
+}
 
 macro_rules! keycode {
-    (,) => { KC_COMMA };
-    (.) => { KC_DOT };
-    (-) => { KC_MINUS };
-    (=) => { KC_EQUAL };
-    (;) => { KC_SCLN };
-    (/) => { KC_SLSH };
-    (!) => { KC_EXLM };
-    (@) => { KC_AT };
-    (#) => { KC_HASH };
-    ($) => { KC_DLR };
-    (%) => { KC_PERC };
-    (^) => { KC_CIRC };
-    (&) => { KC_AMPR };
-    (*) => { KC_ASTR };
-    (_) => { KC_UNDS };
-    (+) => { KC_PLUS };
-    ('[') => { KC_LBRC };
-    (']') => { KC_RBRC };
-    ('(') => { KC_LPRN };
-    (')') => { KC_RPRN };
-    (?) => { KC_QUEST };
-    ('⏎') => { KC_ENTER };
-    ('↑') => { KC_UP };
-    ('→') => { KC_RIGHT };
-    ('↓') => { KC_DOWN };
-    ('←') => { KC_LEFT };
-    ('↹') => { KC_TAB };
-    ('`') => { KC_GRV };
-    ('🔊') => { KC_VOLU };
-    ('🔉') => { KC_VOLD };
-    ('🔇') => { KC_MUTE };
-    ([ ]) => { KC__TODO_ };
-    (RESET) => { RESET };
-    (xxx) => { kb!(NO) };
-    (xxxx) => { kb!(NO) };
-    (xxxxx) => { kb!(NO) };
-    (xxxxxx) => { kb!(NO) };
-    (xxxxxxx) => { kb!(NO) };
-    (xxxxxxxx) => { kb!(NO) };
+    (,) => {
+        KC_COMMA
+    };
+    (.) => {
+        KC_DOT
+    };
+    (-) => {
+        KC_MINUS
+    };
+    (=) => {
+        KC_EQUAL
+    };
+    (;) => {
+        KC_SCLN
+    };
+    (/) => {
+        KC_SLSH
+    };
+    (!) => {
+        KC_EXLM
+    };
+    (@) => {
+        KC_AT
+    };
+    (#) => {
+        KC_HASH
+    };
+    ($) => {
+        KC_DLR
+    };
+    (%) => {
+        KC_PERC
+    };
+    (^) => {
+        KC_CIRC
+    };
+    (&) => {
+        KC_AMPR
+    };
+    (*) => {
+        KC_ASTR
+    };
+    (_) => {
+        KC_UNDS
+    };
+    (+) => {
+        KC_PLUS
+    };
+    ('[') => {
+        KC_LBRC
+    };
+    (']') => {
+        KC_RBRC
+    };
+    ('(') => {
+        KC_LPRN
+    };
+    (')') => {
+        KC_RPRN
+    };
+    (?) => {
+        KC_QUEST
+    };
+    ('⏎') => {
+        KC_ENTER
+    };
+    ('↑') => {
+        KC_UP
+    };
+    ('→') => {
+        KC_RIGHT
+    };
+    ('↓') => {
+        KC_DOWN
+    };
+    ('←') => {
+        KC_LEFT
+    };
+    ('↹') => {
+        KC_TAB
+    };
+    ('`') => {
+        KC_GRV
+    };
+    ('🔊') => {
+        KC_VOLU
+    };
+    ('🔉') => {
+        KC_VOLD
+    };
+    ('🔇') => {
+        KC_MUTE
+    };
+    ([ ]) => {
+        KC__TODO_
+    };
+    ([RGB $rgb:ident]) => {
+        paste! { [<RGB_ $rgb>] }
+    };
+    (RESET) => {
+        RESET
+    };
+    (xxx) => {
+        kb!(NO)
+    };
+    (xxxx) => {
+        kb!(NO)
+    };
+    (xxxxx) => {
+        kb!(NO)
+    };
+    (xxxxxx) => {
+        kb!(NO)
+    };
+    (xxxxxxx) => {
+        kb!(NO)
+    };
+    (xxxxxxxx) => {
+        kb!(NO)
+    };
 
     ([$key:ident&LT{$layernu:literal}]) => {
         LT!($layernu, keycode!($key))
@@ -54,16 +139,16 @@ macro_rules! keycode {
         MO!($layernu)
     };
     ($key:literal) => {
-        paste!{ [<KC_ $key>] }
+        paste! { [<KC_ $key>] }
     };
     ($key:ident) => {
-        paste!{ [<KC_ $key>] }
+        paste! { [<KC_ $key>] }
     };
     ($key:expr) => {
         $key
     };
     ($key:ident&LT($layernu:literal)) => {
-        LT!($layernu, paste!{ [<KC_ $key>] })
+        LT!($layernu, paste! { [<KC_ $key>] })
     };
 }
 
