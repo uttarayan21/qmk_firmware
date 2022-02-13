@@ -38,6 +38,13 @@
 #define LED_CAPS_LOCK_PIN B9
 #define LED_PIN_ON_STATE  1
 
+/* rgb */
+#define ENABLE_RGB_MATRIX_BREATHING
+#define ENABLE_RGB_MATRIX_CYCLE_ALL
+#define ENABLE_RGB_MATRIX_RAINBOW_BEACON
+#define ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
+#define ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
