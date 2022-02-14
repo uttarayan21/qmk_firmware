@@ -161,6 +161,11 @@ pub const DEBUG: u16 = qkc!(DEBUG);
 pub const EEPROM_RESET: u16 = qkc!(EEPROM_RESET);
 pub const EEP_RST: u16 = qkc!(EEPROM_RESET);
 
+// Bluetooth
+pub const OUT_BT: u16 = qkc!(OUT_BT);
+pub const OUT_USB: u16 = qkc!(OUT_USB);
+pub const OUT_AUTO: u16 = qkc!(OUT_AUTO);
+
 // RGB
 
 RGB!(

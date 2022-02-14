@@ -107,6 +107,15 @@ macro_rules! keycode {
     ([RGB $rgb:ident]) => {
         paste! { [<RGB_ $rgb>] }
     };
+    (OUT_BT) => {
+        OUT_BT
+    };
+    (OUT_USB) => {
+        OUT_USB
+    };
+    (OUT_AUTO) => {
+        OUT_AUTO
+    };
     (RESET) => {
         RESET
     };
