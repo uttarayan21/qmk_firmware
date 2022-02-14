@@ -94,6 +94,27 @@ macro_rules! RGB {
     };
 }
 
+macro_rules! INTERNAL {
+    (
+      $(
+          $(#[$meta:meta])*
+          $key:ident $(=> $alias:ident)?
+      )
+      ,
+      * $(,)?
+    ) => {
+        $(
+            paste! {
+                $(#[$meta])*
+                pub const [<INTERNAL_ $key>]: u16 = [<internal_special_keycodes_KC_ $key>] as u16;
+                $(
+                    #[doc = concat!("Alias to [`", stringify!([<INTERNAL_ $key>]), "`]")]
+                    pub const [<INTERNAL_ $alias>]: u16 =  [<INTERNAL_ $key>] ;
+                )?
+            }
+        )*
+    };
+}
 KC!(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z);
 
 KC!(F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12);
@@ -165,6 +186,69 @@ pub const EEP_RST: u16 = qkc!(EEPROM_RESET);
 pub const OUT_BT: u16 = qkc!(OUT_BT);
 pub const OUT_USB: u16 = qkc!(OUT_USB);
 pub const OUT_AUTO: u16 = qkc!(OUT_AUTO);
+
+// Internal buttons
+
+INTERNAL! {
+    SYSTEM_POWER => SP,
+    SYSTEM_SLEEP => SS,
+    SYSTEM_WAKE => SW,
+    AUDIO_MUTE => AM,
+    AUDIO_VOL_UP => AVU,
+    AUDIO_VOL_DOWN => AVD,
+    MEDIA_NEXT_TRACK => MNT,
+    MEDIA_PREV_TRACK => MPT,
+    MEDIA_STOP => MS,
+    MEDIA_PLAY_PAUSE => MPP,
+    MEDIA_SELECT,
+    MEDIA_EJECT,
+    MAIL,
+    CALCULATOR,
+    WWW_SEARCH,
+    WWW_HOME,
+    WWW_BACK,
+    WWW_FORWARD,
+    WWW_STOP,
+    WWW_REFRESH,
+    WWW_FAVORITES,
+    MEDIA_FAST_FORWARD => MFF,
+    BRIGHTNESS_UP => B_U,
+    BRIGHTNESS_DOWN => B_D,
+}
+
+INTERNAL! {
+    FN1,
+    FN2,
+    FN3,
+    FN4,
+    FN5,
+    FN6,
+    FN7,
+    FN8,
+    FN9,
+    FN10,
+    FN11,
+    FN12,
+    FN13,
+    FN14,
+    FN15,
+    FN16,
+    FN17,
+    FN18,
+    FN19,
+    FN20,
+    FN21,
+    FN22,
+    FN23,
+    FN24,
+    FN25,
+    FN26,
+    FN27,
+    FN28,
+    FN29,
+    FN30,
+    FN31,
+}
 
 // RGB
 

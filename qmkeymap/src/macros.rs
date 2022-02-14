@@ -107,6 +107,9 @@ macro_rules! keycode {
     ([RGB $rgb:ident]) => {
         paste! { [<RGB_ $rgb>] }
     };
+    ([I $internal:ident]) => {
+        paste! { [<INTERNAL_ $internal>] }
+    };
     (OUT_BT) => {
         OUT_BT
     };

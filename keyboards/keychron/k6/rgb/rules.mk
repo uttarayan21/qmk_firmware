@@ -31,3 +31,6 @@ RGB_MATRIX_DRIVER = SN32F24xB
 SRC = ../../../drivers/led/sn32/matrix_sn32f24xx.c
 
 DEFAULT_FOLDER = keychron/k6/rgb/ansi
+# bluetooth
+BLUETOOTH_ENABLE = yes
+BLUETOOTH_DRIVER = ITON_BT

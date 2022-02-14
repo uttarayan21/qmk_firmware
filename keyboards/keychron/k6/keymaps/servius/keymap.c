@@ -15,7 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include QMK_KEYBOARD_H
-
+#include "iton_bt.h"
+#include "outputselect.h"
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -71,6 +72,28 @@ bool dip_switch_update_user(uint8_t index, bool active){
         break;
     }
     return true;
+}
+
+bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch(keycode) {
+            case KC_FN4:
+                iton_bt_enter_pairing();
+                break;
+            case KC_FN1:
+                iton_bt_switch_profile(0);
+                break;
+            case KC_FN2:
+                iton_bt_switch_profile(1);
+                break;
+            case KC_FN3:
+                iton_bt_switch_profile(2);
+                break;
+            default:
+                break;
+        }
+    }
+    return process_record_user(keycode, record);
 }
 
 void keyboard_post_init_user(void) {
