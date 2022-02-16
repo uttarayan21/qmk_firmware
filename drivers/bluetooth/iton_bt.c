@@ -8,11 +8,19 @@
 #include "quantum.h"
 
 #ifndef ITON_BT_IRQ_PIN
+#ifdef SN32F260
+#define ITON_BT_IRQ_PIN B0
+#else
 #define ITON_BT_IRQ_PIN A0
+#endif
 #endif
 
 #ifndef ITON_BT_INT_PIN
+#ifdef SN32F260
+#define ITON_BT_INT_PIN B1
+#else
 #define ITON_BT_INT_PIN A1
+#endif
 #endif
 
 #ifndef ITON_BT_MAX_PROFILES
