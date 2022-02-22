@@ -1,5 +1,9 @@
 # QMK Keymaps in rust for Keycrhon k6
-This is a fork of https://github.com/houqp/qmk_firmware/tree/massdrop_houqp_rust and https://github.com/SonixQMK/qmk_firmware for [keychron k6](https://www.keychron.com/products/keychron-k6-wireless-mechanical-keyboard?variant=31441092149337)
+This is a fork of 
+https://github.com/houqp/qmk_firmware/tree/massdrop_houqp_rust 
+https://github.com/SonixQMK/qmk_firmware 
+https://github.com/1Conan/qmk_firmware
+for [keychron k6](https://www.keychron.com/products/keychron-k6-wireless-mechanical-keyboard?variant=31441092149337)
 where I have written the keymaps in rust.
 
 To build run  
@@ -7,6 +11,7 @@ To build run
 
 
 I had to change some stuff around to make it work on current versions of rust.
+This currently works with bluetooth as well as in wired mode
 
 
 ```rust
@@ -36,8 +41,8 @@ keymaps!(
         r!(    [MO{2}]  |LGUI|LALT|xxx|xxx|xxx|SPACE|xxxx|xxxx|xxxxx|xxxx|[MO{1}]|[MO{2}]| [RGB HUD]| [RGB VAD] | [RGB HUI] ),
     ),
     layer!(// layer_3
-        r!(     GESC    | 1  | 2  | 3 | 4 | 5 |  6  | 7 | 8 | 9 | 0  |   -   |  =    |BSPC | xxx | DEL  ),
-        r!( [TAB &LT{3}]| Q  | W  | E | R | T |  Y  | U | I | O | P  |  '['  | ']'   |BSLS | xxx | HOME ),
+        r!(    OUT_BT   | 1  | 2  | 3 | 4 | 5 |  6  | 7 | 8 | 9 | 0  |   -   |  =    |BSPC | xxx | DEL  ),
+        r!(    OUT_USB  | Q  | W  | E | R | T |  Y  | U | I | O | P  |  '['  | ']'   |BSLS | xxx | HOME ),
         r!(     LCTL    | A  | S  | D | F | G |  H  | J | K | L | ;  | QUOTE | xxxx  | '⏎' | xxx | PGUP ),
         r!(     LSFT    |xxxx| Z  | X | C | V |  B  | N | M | , | .  |   /   | xxxx  | RSFT| '↑' | PGDN ),
         r!(    [MO{2}]  |LGUI|LALT|xxx|xxx|xxx|RESET|xxx|xxx|xxx|RALT|[MO{1}]|[MO{2}]| '←' | '↓' | '→' ),
@@ -48,4 +53,5 @@ keymaps!(
 References:
 - https://about.houqp.me/posts/rusty-c/
 - https://github.com/SonixQMK/qmk_firmware
+- https://github.com/1Conan/qmk_firmware
 - https://github.com/houqp/qmk_firmware/tree/massdrop_houqp_rust

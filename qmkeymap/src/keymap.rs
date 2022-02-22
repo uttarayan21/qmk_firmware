@@ -30,10 +30,10 @@ keymaps!(
         r!(    [MO{2}]  |LGUI|LALT|xxx|xxx|xxx|SPACE|xxxx|xxxx|xxxxx|xxxx|[MO{3}]|[MO{3}]| [RGB HUD]| [RGB VAD] | [RGB HUI] ),
     ),
     layer!(// layer_3
-        r!(    OUT_USB  |[I B_D]|[I B_U]|3      | 4     | 5 |  6  | 7 | 8 | 9 | 0     |   -   |  =    |BSPC | xxx | OUT_BT ),
-        r!(     TAB     |[I FN1]|[I FN2]|[I FN3]|[I FN4]| T |  Y  | U | I | O |[I FN5]|  '['  | ']'   |BSLS | xxx | HOME ),
-        r!(     LCTL    | A     | S     | D     | F     | G |  H  | J | K | L | ;     | QUOTE | xxxx  | '⏎' | xxx | PGUP ),
-        r!(     LSFT    |xxxxxxx|xxxxxxx| X     | C     | V |  B  | N | M | , | .     |   /   | xxxx  | RSFT| UP  | PGDN ),
-        r!(    [MO{2}]  |xxxxxxx|xxxxxxx|xxx    |xxxxxxx|xxx|RESET|xxx|xxx|xxx|RALT   |[TO{2}]|[TO{0}]| LEFT|DOWN | RIGHT ),
+        r!(    OUT_USB  |[I B_D]|[I B_U]|xxxxxxx|xxxxxxx|[RGB HUD]|[RGB HUI]|[I MPT]|[I MPP]|[I MNT]|[I  AM]|[I AVD]|[I AVU]|xxxxx|xxxxx| OUT_BT ),
+        r!(     TAB     |[I FN1]|[I FN2]|[I FN3]|[I FN4]| xxxxxxx | xxxxxxx |xxxxxxx|xxxxxxx|xxxxxxx|[I FN5]|xxxxxxx|xxxxxxx|xxxxx|xxxxx|xxxxxxx),
+        r!(     LCTL    |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx| xxxxxxx | xxxxxxx |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxx|xxxxx|xxxxxxx),
+        r!(     LSFT    |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx| xxxxxxx | xxxxxxx |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxx|xxxxx|xxxxxxx),
+        r!(    [MO{2}]  |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx| xxxxxxx |  RESET  |xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxxxx|xxxxx|xxxxx|xxxxxxx),
     ),
 );
