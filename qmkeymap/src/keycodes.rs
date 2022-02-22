@@ -45,6 +45,12 @@ macro_rules! LT {
     };
 }
 
+macro_rules! TO {
+    ( $layer:literal ) => {
+        qkc!(QK_TO)
+    };
+}
+
 macro_rules! KC {
     (
         $(

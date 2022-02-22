@@ -19,6 +19,7 @@ fn main() {
         .use_core()
         .header("../quantum/quantum_keycodes.h")
         .header("../quantum/keycode.h")
+        // .header("../quantum/action.h") // TODO
         .clang_arg("-I../quantum")
         .clang_arg("-I../quantum/sequencer")
         .clang_arg("-I../quantum/logging")

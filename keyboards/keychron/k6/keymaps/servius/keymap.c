@@ -62,10 +62,12 @@ bool dip_switch_update_user(uint8_t index, bool active){
     switch(index){
         case 0: // macos/windows togggle
             if(active){ //macos
+                iton_bt_os_mac();
                 layer_off(_WINDOWS);
                 layer_on(_MAC);
             }
             else{ //windows
+                iton_bt_os_win();
                 layer_on(_WINDOWS);
                 layer_off(_MAC);
             }
@@ -77,7 +79,7 @@ bool dip_switch_update_user(uint8_t index, bool active){
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch(keycode) {
-            case KC_FN4:
+            case KC_FN5:
                 iton_bt_enter_pairing();
                 break;
             case KC_FN1:
@@ -88,6 +90,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_FN3:
                 iton_bt_switch_profile(2);
+                break;
+            case KC_FN4:
+                iton_bt_reset_pairing();
                 break;
             default:
                 break;

@@ -150,6 +150,9 @@ macro_rules! keycode {
     ([MO{$layernu:literal}]) => {
         MO!($layernu)
     };
+    ([TO{$layernu:literal}]) => {
+        TO!($layernu)
+    };
     ($key:literal) => {
         paste! { [<KC_ $key>] }
     };
