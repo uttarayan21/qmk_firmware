@@ -116,6 +116,7 @@ macro_rules! INTERNAL {
                 $(
                     #[doc = concat!("Alias to [`", stringify!([<INTERNAL_ $key>]), "`]")]
                     pub const [<INTERNAL_ $alias>]: u16 =  [<INTERNAL_ $key>] ;
+                    pub const $alias: u16 =  [<INTERNAL_ $key>] ;
                 )?
             }
         )*
