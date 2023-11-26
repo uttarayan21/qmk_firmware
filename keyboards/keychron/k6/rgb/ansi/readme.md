@@ -1,19 +1,18 @@
-# Keychron K2V2 RGB ANSI
+# Keychron K6 RGB ANSI
 
 
-*A 75% keyboard sold by keychron*
+*A 65% keyboard sold by keychron*
 
-* Keyboard Maintainer: [ITNerd69](https://github.com/itnerd69) (based on work of dexter93 on a previous branch)
-* Hardware Supported: *Keychron K2V2 RGB, MCU: SN32F248BF*
-* Hardware Availability: *https://www.keychron.com/products/keychron-k2-hot-swappable-wireless-mechanical-keyboard*
+* Hardware Supported: *Keychron K6 RGB, MCU: SN32F248BF*
+* Hardware Availability: *https://www.keychron.com/products/keychron-k6-wireless-mechanical-keyboard
 
 Compile example for this keyboard (after setting up your build environment):
 
-    qmk compile -kb keychron/k2/rgb/v2/ansi -km default
+    qmk compile -kb keychron/k6/rgb/ansi -km default
 
 Compile example for this keyboard with VIA (after setting up your build environment):
 
-    qmk compile -kb keychron/k2/rgb/v2/ansi -km via
+    qmk compile -kb keychron/k6/rgb/ansi -km via
 
 This keyboard must be flashed with an external [GUI](https://github.com/SonixQMK/sonix-flasher) or [CLI](https://github.com/SonixQMK/SonixFlasherC)
 

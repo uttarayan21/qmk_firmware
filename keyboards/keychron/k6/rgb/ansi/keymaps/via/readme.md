@@ -1,10 +1,10 @@
-# Keychron K2v2 RGB ANSI
+# Keychron K6 RGB ANSI
 
-K2v2 RGB ANSI with VIA support
+K6 RGB ANSI with VIA support
 
 Make example for this keyboard (after setting up your build environment):
 
-    qmk compile -kb keychron/k2/rgb/v2/ansi -km via
+    qmk compile -kb keychron/k6/rgb/ansi -km via
     
 * * *
 
