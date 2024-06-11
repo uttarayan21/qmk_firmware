@@ -165,7 +165,7 @@
             "jellybean_raindrops" : true,
             "multisplash" : true,
             "pixel_flow" : true,
-            "pixel_fractal" : true,
+            "pixel_fractal" : false,
             "pixel_rain" : true,
             "rainbow_beacon" : true,
             "rainbow_moving_chevron" : true,
