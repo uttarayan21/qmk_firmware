@@ -28,6 +28,11 @@
         "pid": "0x5041",
         "device_version": "1.0.0"
     },
+    "eeprom": {
+        "wear_leveling": {
+            "backing_size": 2112
+        }
+    },
     "layouts": {
         "LAYOUT_fullsize_iso": {
             "layout": [
@@ -302,6 +307,8 @@
             {"matrix": [5, 16],"flags": 1,"x":180, "y":64},
             {"matrix": [5, 18],"flags": 4,"x":198, "y":64},
             {"matrix": [5, 19],"flags": 4,"x":214, "y":64}
-        ]
+        ],
+        "react_on_keyup": true,
+        "sleep": true
     }
 }
