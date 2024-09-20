@@ -25,6 +25,7 @@ RGB Matrix is an abstraction layer on top of an underlying LED driver API. The l
 |[IS31FL3745](../drivers/is31fl3745)  |48      |
 |[IS31FL3746A](../drivers/is31fl3746a)|24      |
 |[SNLED27351](../drivers/snled27351)  |64      |
+|[SLED1734X](../drivers/sled1734x)    |70      |
 |[WS2812](../drivers/ws2812)          |?       |
 
 To assign the RGB Matrix driver, add the following to your `rules.mk`, for example:
@@ -32,67 +33,6 @@ To assign the RGB Matrix driver, add the following to your `rules.mk`, for examp
 ```make
 RGB_MATRIX_DRIVER = is31fl3218
 ```
-
----
-### SLED1734X {#sled1734x}
-
-There is basic support for addressable RGB matrix lighting with the I2C SLED1734X RGB controller. To enable it, add this to your `rules.mk`:
-
-```make
-RGB_MATRIX_ENABLE = yes
-RGB_MATRIX_DRIVER = sled1734x
-```
-
-You can use between 1 and 4 SLED1734X IC's. Do not specify `DRIVER_ADDR_<N>` defines for IC's that are not present on your keyboard. You can define the following items in `config.h`:
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `SLED1734X_TIMEOUT` | (Optional) How long to wait for i2c messages, in milliseconds | 100 |
-| `SLED1734X_PERSISTENCE` | (Optional) Retry failed messages this many times | 0 |
-| `RGB_MATRIX_LED_COUNT` | (Required) How many RGB lights are present across all drivers | |
-| `SLED1734X_I2C_ADDRESS_1` | (Required) Address for the first RGB driver | |
-| `SLED1734X_I2C_ADDRESS_2` | (Optional) Address for the second RGB driver | |
-| `SLED1734X_I2C_ADDRESS_3` | (Optional) Address for the third RGB driver | |
-| `SLED1734X_I2C_ADDRESS_4` | (Optional) Address for the fourth RGB driver | |
-
-Here is an example using 2 drivers.
-
-```c
-// This is a 7-bit address, that gets left-shifted and bit 0
-// set to 0 for write, 1 for read (as per I2C protocol)
-// The address will vary depending on your wiring:
-// 0b1110100 (0x74) AD <-> GND
-// 0b1110111 (0x77) AD <-> VCC
-// 0b1110101 (0x75) AD <-> SCL
-// 0b1110110 (0x76) AD <-> SDA
-#define SLED1734X_I2C_ADDRESS_1 SLED1734X_I2C_ADDRESS_GND
-#define SLED1734X_I2C_ADDRESS_2 SLED1734X_I2C_ADDRESS_SDA
-
-#define DRIVER_1_LED_TOTAL 25
-#define DRIVER_2_LED_TOTAL 24
-#define RGB_MATRIX_LED_COUNT (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
-```
-
-!> Note the parentheses, this is so when `RGB_MATRIX_LED_COUNT` is used in code and expanded, the values are added together before any additional math is applied to them. As an example, `rand() % (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)` will give very different results than `rand() % DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL`.
-
-For split keyboards using `RGB_MATRIX_SPLIT` with an LED driver, you can either have the same driver address or different driver addresses. If using different addresses, use `DRIVER_ADDR_1` for one and `DRIVER_ADDR_2` for the other one. Then, in `g_sled1734x_leds`, fill out the correct driver index (0 or 1). If using one address, use `DRIVER_ADDR_1` for both, and use index 0 for `g_sled1734x_leds`.
-
-Define these arrays listing all the LEDs in your `<keyboard>.c`:
-
-```c
-const sled1734x_led PROGMEM g_sled1734x_leds[RGB_MATRIX_LED_COUNT] = {
-/* Refer to SLED1734X manual for these locations
- *   driver
- *   |  R location
- *   |  |      G location
- *   |  |      |      B location
- *   |  |      |      | */
-    {0, CA3_D, CA1_D, CA2_D},
-    ....
-}
-```
-
-Where `CZx_y` is the location of the LED in the matrix defined by [the datasheet](https://www.sonix.com.tw/files/1/637E852205EF6BC3E050007F01007792) and the header file `drivers/led/sled1734x.h`. The `driver` is the index of the driver you defined in your `config.h` (`0`, `1`, `2`, or `3`).
 
 ---
 ## Common Configuration {#common-configuration}
