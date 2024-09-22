@@ -53,6 +53,8 @@ jobs:
         source $HOME/.bashrc
         nvm use 20
         qmk --verbose generate-docs
+        rm .build/docs/CNAME
+        sed -i "s^basePath: '/'^basePath: '/qmk_firmware/'^" .build/docs/index.html
 
     - name: Deploy
       if: ${{ github.event_name == 'push' && github.repository == 'SonixQMK/qmk_firmware' }}
@@ -61,3 +63,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: .build/docs
+          clean: true
+          single-commit: true
