@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     branches:
-    - sn32_develop
+    - master
     paths:
     - 'builddefs/docsgen/**'
     - 'tmk_core/**'
@@ -55,9 +55,11 @@ jobs:
         qmk --verbose generate-docs
 
     - name: Deploy
-      if: ${{ github.event_name == 'push' && github.repository == 'SonixQMK/qmk_firmware' }}
+      if: ${{ github.event_name == 'push' && github.repository == 'qmk/qmk_firmware' }}
       uses: JamesIves/github-pages-deploy-action@v4.6.4
       with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: .build/docs
+          git-config-name: QMK Bot
+          git-config-email: hello@qmk.fm
