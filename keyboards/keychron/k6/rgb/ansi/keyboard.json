@@ -1,7 +1,7 @@
 {
     "keyboard_name": "Keychron K6",
     "usb": {
-        "pid": "0xFE0E"
+        "pid": "0xFE0A"
     },
     "layouts": {
         "LAYOUT_65_ansi": {

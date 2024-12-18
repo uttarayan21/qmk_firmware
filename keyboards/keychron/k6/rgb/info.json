@@ -97,7 +97,6 @@
         "caps_lock": "B9"
     },
     "usb": {
-        "pid": "0xFE0A",
         "vid": "0x3434",
         "device_version": "1.0.0"
     }
